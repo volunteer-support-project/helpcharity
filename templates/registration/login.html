@@ -1,0 +1,39 @@
+{% include 'base.html' %}
+{% load crispy_forms_tags %}
+
+<div class="h-100 row align-items-center">
+    <div class="col-md-4 mx-auto">
+        {% if form.errors %}
+        <p>Your username and password didn't match. Please try again.</p>
+      {% endif %}
+
+      {% if next %}
+        {% if user.is_authenticated %}
+          <p>Your account doesn't have access to this page. To proceed,
+          please login with an account that has access.</p>
+        {% else %}
+          <p>Please login to see this page.</p>
+        {% endif %}
+      {% endif %}
+    <div class="form-group">
+
+          <form method="post" action="{% url 'login' %}">
+
+            {% csrf_token %}
+            {% crispy form %}
+
+            <input type="submit" class="btn btn-primary" value="login" />
+            <input type="hidden" name="next" value="{{ next }}" />
+          </form>
+
+          {# Assumes you setup the password_reset view in your URLconf #}
+          <p><a href="{% url 'password_reset' %}">Lost password?</a></p>
+        </div>
+    </div>
+</div>
+<script>
+  $(function(){
+    $('form.uniForm').uniform();
+  });
+</script>
+{% include 'footer.html' %}

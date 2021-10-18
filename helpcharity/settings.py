@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'crispy_forms',
 ]
 
 #This is for static folder there located photos, videos and other media content
@@ -75,7 +76,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'helpcharity.wsgi.application'
 
-
+CRISPY_TEMPLATE_PACK = "bootstrap4"
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
